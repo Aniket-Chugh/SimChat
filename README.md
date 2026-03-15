@@ -327,8 +327,7 @@ Developers interested in collaboration can contact:
 </p>
 
 <p>
-<strong>Email:</strong> your-email@example.com
-</p>
+<strong>Email:</strong> oneaniket13@gmail.com</p>
 
 <br>
 
