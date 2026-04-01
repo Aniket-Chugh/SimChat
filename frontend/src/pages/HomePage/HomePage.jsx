@@ -105,7 +105,7 @@ const LandingPage = () => {
         <div className="max-w-3xl mb-16">
           <h2 className="text-4xl font-light mb-6">Cool features, zero spying.</h2>
           <p className="text-[#525252] text-lg leading-relaxed">
-            Just because we are extremely private doesn't mean we are boring. SimChatis packed with tools to make your life easier.
+            Just because we are extremely private doesn't mean we are boring. SimChat is packed with tools to make your life easier, even when you're off the grid.
           </p>
         </div>
 
@@ -144,6 +144,42 @@ const LandingPage = () => {
             <h3 className="text-lg font-semibold mb-3">Auto To-Do Lists</h3>
             <p className="text-[#525252] text-sm leading-relaxed">
               If someone says in the group, "Please finish the project by Monday", our app automatically creates a task reminder for you so you don't forget.
+            </p>
+          </div>
+
+          {/* Feature 5: Offline Maps */}
+          <div className="p-8 border-b border-r border-[#e5e5e5] hover:bg-[#f4f4f4] transition-colors cursor-default group">
+            <svg className="w-8 h-8 text-[#0f62fe] mb-6 transform group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+            <h3 className="text-lg font-semibold mb-3">Offline Maps</h3>
+            <p className="text-[#525252] text-sm leading-relaxed">
+              Never lose your way. Download regions ahead of time and navigate using fully interactive maps even when you have zero cell service.
+            </p>
+          </div>
+
+          {/* Feature 6: Offline Wikipedia */}
+          <div className="p-8 border-b border-r border-[#e5e5e5] hover:bg-[#f4f4f4] transition-colors cursor-default group">
+            <svg className="w-8 h-8 text-[#0f62fe] mb-6 transform group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            <h3 className="text-lg font-semibold mb-3">Pocket Wikipedia</h3>
+            <p className="text-[#525252] text-sm leading-relaxed">
+              Carry human knowledge wherever you go. Search, read, and explore Wikipedia articles natively without needing an internet connection.
+            </p>
+          </div>
+
+          {/* Feature 7: Offline Bluetooth Chat */}
+          <div className="p-8 border-b border-r border-[#e5e5e5] hover:bg-[#f4f4f4] transition-colors cursor-default group">
+            <svg className="w-8 h-8 text-[#0f62fe] mb-6 transform group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+            <h3 className="text-lg font-semibold mb-3">Mesh Chatting</h3>
+            <p className="text-[#525252] text-sm leading-relaxed">
+              No internet? No problem. Connect and chat directly with nearby friends securely via Bluetooth in crowded events or remote areas.
+            </p>
+          </div>
+
+          {/* Feature 8: Bluetooth Video Calls */}
+          <div className="p-8 border-b border-r border-[#e5e5e5] hover:bg-[#f4f4f4] transition-colors cursor-default group">
+            <svg className="w-8 h-8 text-[#0f62fe] mb-6 transform group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            <h3 className="text-lg font-semibold mb-3">Bluetooth Video Calls</h3>
+            <p className="text-[#525252] text-sm leading-relaxed">
+              Enjoy crisp, secure, close-range video calls powered by a direct Bluetooth connection—zero mobile data required.
             </p>
           </div>
 
