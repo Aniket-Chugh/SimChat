@@ -165,14 +165,7 @@ const LandingPage = () => {
             </p>
           </div>
 
-          {/* Feature: Bluetooth Video Calls */}
-          <div className="p-8 border-b border-r border-[#e5e5e5] hover:bg-[#f4f4f4] transition-colors cursor-default group">
-            <svg className="w-8 h-8 text-[#0f62fe] mb-6 transform group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-            <h3 className="text-lg font-semibold mb-3">Bluetooth Video Calls</h3>
-            <p className="text-[#525252] text-sm leading-relaxed">
-              Enjoy crisp, secure, close-range video calls powered by a direct Bluetooth connection—zero mobile data required.
-            </p>
-          </div>
+
 
           {/* Feature: Pinned Conversations & Smart Folders */}
           <div className="p-8 border-b border-r border-[#e5e5e5] hover:bg-[#f4f4f4] transition-colors cursor-default group">
