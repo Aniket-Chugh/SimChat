@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import SignupPage from './pages/signup/SignupPage';
 import LoginPage from './pages/login/LoginPage';
 import LandingPage from './pages/HomePage/HomePage';
+import {Dashboard} from './pages/Dashboard';
 
 
 const App = () => {
@@ -24,7 +25,18 @@ const App = () => {
         path="/login"
         element={<LoginPage></LoginPage>}
       />
+
+       <Route
+        path="/login"
+        element={<LoginPage></LoginPage>}
+      />
+     <Route
+        path="/dashboard"
+        element={<Dashboard></Dashboard>}
+      />
+
     </Routes>
+
   );
 };
 
