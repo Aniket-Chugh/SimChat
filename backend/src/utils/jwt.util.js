@@ -1,84 +1,62 @@
 import jwt from "jsonwebtoken";
-import crypto from "crypto";
 import TOKEN_CONFIG from "../connections/TOKEN_CONFIG.connection.js";
 
 export const signToken = (type, payload) => {
     try {
-        console.log(type);
-        if (!type || typeof type !== "string") {
-            throw new Error("Token type must be a valid string");
-        }
-
         const config = TOKEN_CONFIG[type];
-
         if (!config) {
-            throw new Error(`Invalid token type: ${type}`);
+            throw new Error(`Token type "${type}" is not defined in config`);
         }
 
         const { secret, expiresIn } = config;
 
-        if (!secret) {
-            throw new Error(`Secret missing for ${type}`);
-        }
-
-        if (!expiresIn) {
-            throw new Error(`expiresIn missing for ${type}`);
-        }
-
-        if (!payload || typeof payload !== "object") {
-            throw new Error("Payload must be a valid object");
-        }
-
-        const tokenPayload = { ...payload, tokenType: type };
-
-        const token = jwt.sign(tokenPayload, secret, {
+        const jwtOptions = {
             expiresIn: expiresIn,
-            jwtid: crypto.randomUUID(),
             issuer: "simchat",
             audience: "chat-audience"
-        });
+        };
+
+        if (payload.jti) {
+            jwtOptions.jwtid = String(payload.jti);
+        }
+
+        const token = jwt.sign(
+            { ...payload, tokenType: type },
+            secret,
+            jwtOptions
+        );
 
         return { token, expiresIn };
-
-    } catch (error) {
-        console.error("JWT Sign Error:", error.message);
-        throw new Error(`Token generation failed: ${error.message}`);
+    } catch (err) {
+        console.error("Error signing token:", err.message);
+        throw new Error("Could not generate secure token");
     }
 };
 
 export const verifyToken = (type, token) => {
     try {
-        if (!type || typeof type !== "string") {
-            throw new Error("Token type must be a valid string");
-        }
-        if (!token || typeof token !== "string") {
-            throw new Error("Token is invalid");
-        }
-
         const config = TOKEN_CONFIG[type];
         if (!config) {
-            throw new Error(`Invalid token type: ${type}`);
+            throw new Error("Invalid token type provided");
         }
 
-        const { secret } = config;
-
-        if (!secret || typeof secret !== "string") {
-            throw new Error("Secret is invalid");
-        }
-
-        const decoded = jwt.verify(token, secret, {
+        const decoded = jwt.verify(token, config.secret, {
             issuer: "simchat",
-            audience: "chat-audience"
+            audience: "chat-audience",
+            clockTolerance: 30
         });
 
-        if (decoded.tokenType && decoded.tokenType !== type) {
-            throw new Error("Token type mismatch");
+        if (decoded.tokenType !== type) {
+            throw new Error("Wrong token type used for this route");
         }
 
         return decoded;
+    } catch (err) {
+        if (err.name === "TokenExpiredError") {
+            throw new Error("expired");
+        }
 
-    } catch (error) {
-        console.error("Error occurred while verifying the token:", error.message);
-        throw new Error(`Token verification failed: ${error.message}`);
+        console.log("JWT Verify Error:", err.message);
+        throw new Error("invalid_token");
     }
 };

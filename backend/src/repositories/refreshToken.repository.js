@@ -1,33 +1,36 @@
-import db from "../connections/db.connection.js"
-const connection = await db.getConnection();
-export const addRefreshTokenToDB = async (user_id, token, expiresAt) => {
+import { redisClient } from "../connections/redis.connection.js";
 
 
+export const addRefreshTokenToRedis = async (sid, jti, ttlInSeconds, fprint) => {
     try {
-        await connection.beginTransaction();
-        const query = "INSERT INTO refresh_tokens_data(user_id , token , expires_at) VALUES (?, ?, ?);";
-        const [result] = await connection.query(query, [user_id, token, expiresAt]);
-        await connection.commit();
-        console.log(result);
+        const sessionData = JSON.stringify({ jti, fprint });
 
+        await redisClient.set(`session:${sid}`, sessionData, {
+            EX: ttlInSeconds
+        });
+        console.log(`✅ Session ${sid} whitelisted with Fingerprint monitoring.`);
     } catch (error) {
-        connection.rollback();
-        throw new Error("error : ", error);
+        console.error("Redis Store Error:", error);
+        throw new Error("Could not save session to cache");
     }
-}
+};
 
-
-export const checkRefreshToken = (user_id) => {
-    console.log(user_id);
-
+export const getActiveJti = async (sid) => {
     try {
-        connection.beginTransaction();
-        const query = "select token from refresh_tokens_data where user_id=?;"
+        const jti = await redisClient.get(`session:${sid}`);
+        return jti;
     } catch (error) {
-
+        console.error("Redis Retrieval Error:", error);
+        return null;
     }
-}
+};
 
-
-
-
+export const getSessionData = async (sid) => {
+    try {
+        const data = await redisClient.get(`session:${sid}`);
+        return data ? JSON.parse(data) : null;
+    } catch (error) {
+        console.error("Redis Retrieval Error:", error);
+        return null;
+    }
+};
